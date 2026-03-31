@@ -1,5 +1,5 @@
 # Lab1_p.miyienda-dotcom
-# Lab 1 — Grade Evaluator & Archiver
+# Lab 1 - Grade Evaluator & Archiver
 
 **Course:** Introduction to Python Programming and Databases  
 **Programme:** BSE Year 1 – Trimester 2
