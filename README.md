@@ -18,7 +18,7 @@ lab1/
 
 ---
 
-## 1 — Running the Python Grade Evaluator
+## 1 - Running the Python Grade Evaluator
 
 ### Prerequisites
 - Python 3.8+  
@@ -39,11 +39,11 @@ Enter the name of the CSV file to process (e.g., grades.csv): grades.csv
 ### What it does
 | Feature | Detail |
 |---|---|
-| Score Validation | Flags any score outside 0–100 |
-| Weight Validation | Checks total = 100, Summative = 40, Formative = 60 |
-| GPA Calculation | `GPA = (Final Grade / 100) × 5.0` |
-| Pass / Fail | Must score ≥ 50% in **both** categories |
-| Resubmission | Identifies failed formative assignments with the highest weight |
+1. **Score Validation** - Flags any score outside 0–100 
+2. **Weight Validation**  Checks total = 100, Summative = 40, Formative = 60
+3. **GPA Calculation**  - GPA = (Final Grade / 100) × 5.0
+4. **Pass / Fail** - Must score ≥ 50% in **both** categories 
+5. **Resubmission** - Identifies failed formative assignments with the highest weight
 
 ### Expected grades.csv format
 
@@ -56,7 +56,7 @@ Midterm Project - Simple Calculator, Summative,70,20
 Final Project - Text-Based Game, Summative,60,20
 ```
 
----
+
 
 ## 2 - Running the Shell Script Organizer
 
@@ -80,14 +80,13 @@ chmod +x organizer.sh   # only needed once
 ### Sample organizer.log entry
 
 ```
-────────────────────────────────────────
-Timestamp   : 20251105-170000
+Timestamp : 20251105-170000
 Original File: grades.csv
 Archived as: archive/grades_20251105-170000.csv
-────────────────────────────────────────
+
 ```
 
----
+
 
 ## Sample Output
 
@@ -97,8 +96,8 @@ GRADE EVALUATION REPORT
 --- Score Validation ---
   All scores are valid (0–100)
 
---- Weight Validation ---
-Total weight  : 100.0%  (expected 100%)
+ **Weight Validation**
+Total weight: 100.0%  (expected 100%)
 Summative weight: 40.0%  (expected 40%)
 Formative weight: 60.0%  (expected 60%)
 
@@ -110,18 +109,16 @@ Formative weight: 60.0%  (expected 60%)
   Summative: 65.00%
   Formative: 56.67%
 
-==================================================
-          FINAL DECISION SUMMARY
-==================================================
+          **FINAL DECISION SUMMARY**
 
-  Final Grade    : 60.00%
+  Final Grade  : 60.00%
   GPA            : 3.00 / 5.0
   Summative Score: 65.00%
   Formative Score: 56.67%
---------------------------------------------------
+
   FINAL DECISION: PASSED
     The student met the 50% threshold in both categories.
---------------------------------------------------
+
 
   FAILED FORMATIVE ASSIGNMENTS:
     - Group Exercise: Score = 40.0%, Weight = 20%
@@ -131,5 +128,4 @@ Formative weight: 60.0%  (expected 60%)
     (tied at the highest weight of 20%)
     → Group Exercise: Score = 40.0%, Weight = 20%
     → Functions and Debugging Lab: Score = 45.0%, Weight = 20%
-==================================================
 ```
