@@ -1,5 +1,5 @@
 # Lab1_p.miyienda-dotcom
-# Lab 1 — Grade Evaluator & Archiver
+# Lab 1 - Grade Evaluator & Archiver
 
 **Course:** Introduction to Python Programming and Databases  
 **Programme:** BSE Year 1 – Trimester 2
@@ -13,18 +13,16 @@ lab1/
 ├── grade-evaluator.py   # Main Python application
 ├── organizer.sh         # Bash archival script
 ├── grades.csv           # Input data file
-├── grades.db            # SQLite database (auto-created on first run)
-├── transcript.xlsx      # Grade transcript spreadsheet
 └── README.md
 ```
 
 ---
 
-## 1 — Running the Python Grade Evaluator
+## 1 - Running the Python Grade Evaluator
 
 ### Prerequisites
 - Python 3.8+  
-- No external packages required (uses `csv`, `os`, `sys`, `sqlite3` from the standard library)
+- No external packages required (uses `csv`, `os`, `sys` from the standard library)
 
 ### Steps
 
@@ -41,27 +39,26 @@ Enter the name of the CSV file to process (e.g., grades.csv): grades.csv
 ### What it does
 | Feature | Detail |
 |---|---|
-| Score Validation | Flags any score outside 0–100 |
-| Weight Validation | Checks total = 100, Summative = 40, Formative = 60 |
-| GPA Calculation | `GPA = (Final Grade / 100) × 5.0` |
-| Pass / Fail | Must score ≥ 50% in **both** categories |
-| Resubmission | Identifies failed formative assignments with the highest weight |
-| Database | Saves every run to `grades.db` (SQLite) |
+1. **Score Validation** - Flags any score outside 0–100 
+2. **Weight Validation**  Checks total = 100, Summative = 40, Formative = 60
+3. **GPA Calculation**  - GPA = (Final Grade / 100) × 5.0
+4. **Pass / Fail** - Must score ≥ 50% in **both** categories 
+5. **Resubmission** - Identifies failed formative assignments with the highest weight
 
 ### Expected grades.csv format
 
 ```csv
-assignment,group,score,weight
-Quiz,Formative,85,20
-Group Exercise,Formative,40,20
-Functions and Debugging Lab,Formative,45,20
-Midterm Project - Simple Calculator,Summative,70,20
-Final Project - Text-Based Game,Summative,60,20
+assignment, group, score, weight
+Quiz, Formative,85,20
+Group Exercise, Formative,40,20
+Functions and Debugging Lab, Formative,45,20
+Midterm Project - Simple Calculator, Summative,70,20
+Final Project - Text-Based Game, Summative,60,20
 ```
 
----
 
-## 2 — Running the Shell Script Organizer
+
+## 2 - Running the Shell Script Organizer
 
 ### Prerequisites
 - Bash (Linux / macOS / WSL)
@@ -78,79 +75,57 @@ chmod +x organizer.sh   # only needed once
 1. **Creates** an `archive/` directory if it does not exist  
 2. **Renames** `grades.csv` → `grades_YYYYMMDD-HHMMSS.csv` and moves it to `archive/`  
 3. **Creates** a fresh empty `grades.csv` ready for the next batch  
-4. **Appends** a log entry to `organizer.log`
+4. **Appends** a log entry to `organizer.log.`
 
 ### Sample organizer.log entry
 
 ```
-────────────────────────────────────────
-Timestamp    : 20251105-170000
+Timestamp : 20251105-170000
 Original File: grades.csv
-Archived As  : archive/grades_20251105-170000.csv
-────────────────────────────────────────
+Archived as: archive/grades_20251105-170000.csv
+
 ```
 
----
 
-## 3 — Database (grades.db)
-
-The SQLite database is created automatically when you run `grade-evaluator.py`.
-
-### Schema
-
-**assignments** — stores every row from the CSV for each run  
-**results** — stores the computed results for each run
-
-To inspect the database:
-
-```bash
-sqlite3 grades.db
-sqlite> SELECT * FROM results;
-sqlite> SELECT * FROM assignments;
-sqlite> .quit
-```
-
----
-
-## 4 — Transcript Spreadsheet (transcript.xlsx)
-
-Open `transcript.xlsx` in Excel or LibreOffice Calc. It contains:
-
-- **Transcript** sheet — full grade breakdown, category scores, GPA, final decision, and resubmission eligibility  
-- **Run History** sheet — one row per evaluation run pulled from `grades.db`
-
----
 
 ## Sample Output
 
 ```
-==================================================
-         GRADE EVALUATION REPORT
-==================================================
+GRADE EVALUATION REPORT
 
 --- Score Validation ---
-  ✔ All scores are valid (0–100)
+  All scores are valid (0–100)
 
---- Weight Validation ---
-  ✔ Total weight    : 100.0%  (expected 100%)
-  ✔ Summative weight: 40.0%  (expected 40%)
-  ✔ Formative weight: 60.0%  (expected 60%)
+ **Weight Validation**
+Total weight: 100.0%  (expected 100%)
+Summative weight: 40.0%  (expected 40%)
+Formative weight: 60.0%  (expected 60%)
 
 --- Final Grade & GPA ---
-  Final Grade : 60.00%
+  Final Grade: 60.00%
   GPA         : 3.00 / 5.0
 
 --- Category Scores ---
-  Summative : 65.00%
-  Formative : 56.67%
+  Summative: 65.00%
+  Formative: 56.67%
 
-==================================================
-          FINAL DECISION SUMMARY
-==================================================
-  ✔ FINAL DECISION: PASSED
-  RESUBMISSION ELIGIBLE (tied at weight 20%):
-    → Group Exercise: 40%, Weight 20%
-    → Functions and Debugging Lab: 45%, Weight 20%
-==================================================
+          **FINAL DECISION SUMMARY**
+
+  Final Grade  : 60.00%
+  GPA            : 3.00 / 5.0
+  Summative Score: 65.00%
+  Formative Score: 56.67%
+
+  FINAL DECISION: PASSED
+    The student met the 50% threshold in both categories.
+
+
+  FAILED FORMATIVE ASSIGNMENTS:
+    - Group Exercise: Score = 40.0%, Weight = 20%
+    - Functions and Debugging Lab: Score = 45.0%, Weight = 20%
+
+  RESUBMISSION ELIGIBLE:
+    (tied at the highest weight of 20%)
+    → Group Exercise: Score = 40.0%, Weight = 20%
+    → Functions and Debugging Lab: Score = 45.0%, Weight = 20%
 ```
-
