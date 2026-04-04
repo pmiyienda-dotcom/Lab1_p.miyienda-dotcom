@@ -1,5 +1,5 @@
 #!/usr/bin/env bash
-# organizer.sh — Archive grades.csv, reset workspace, and log the operation.
+# organizer.sh - Archive grades.csv, reset workspace, and log the operation.
 
 set -euo pipefail
 
