@@ -3,12 +3,10 @@ import sys
 import os
 
 
-# ─────────────────────────────────────────────
 #  CSV LOADING
-# ─────────────────────────────────────────────
 
 def load_csv_data():
-    """Prompt for a filename, validate it, and return a list of assignment dicts."""
+    """Prompt for a filename, validate it, and return a list of assignments. """
     filename = input("Enter the name of the CSV file to process (e.g., grades.csv): ").strip()
 
     # Error handling: empty filename input
@@ -111,9 +109,7 @@ def load_csv_data():
     return assignments
 
 
-# ─────────────────────────────────────────────
 #  GRADE EVALUATION
-# ─────────────────────────────────────────────
 
 def evaluate_grades(data):
     """Run all validations, compute results, and print the final report."""
@@ -231,9 +227,7 @@ def evaluate_grades(data):
         print("All formative assignments scored 50% or above.")
 
 
-# ─────────────────────────────────────────────
 #  ENTRY POINT
-# ─────────────────────────────────────────────
 
 if __name__ == "__main__":
     course_data = load_csv_data()
